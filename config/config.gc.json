@@ -1,0 +1,45 @@
+{
+  "clusters": [
+    {
+      "name": "gc",
+      "servers": [
+        {
+          "name": "gc-db",
+          "address": "http://139.162.42.108:19999"
+        },
+        {
+          "name": "gc-db-1",
+          "address": "http://172.104.185.159:19999"
+        },
+        {
+          "name": "gc-db-2",
+          "address": "http://139.162.4.153:19999"
+        },
+        {
+          "name": "gc-db-3",
+          "address": "http://139.162.33.43:19999"
+        },
+        {
+          "name": "gc-es",
+          "address": "http://139.162.58.87:19999"
+        },
+        {
+          "name": "gc-loadbalancer",
+          "address": "http://139.162.54.172:19999"
+        },
+        {
+          "name": "gc-other",
+          "address": "http://139.162.29.196:19999"
+        },
+        {
+          "name": "gc-swarm-manager",
+          "address": "http://172.104.48.139:19999"
+        },
+        {
+          "name": "gc-ts",
+          "address": "http://172.104.60.193:19999"
+        }
+      ]
+    }
+  ]
+}
