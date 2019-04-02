@@ -1,0 +1,21 @@
+{
+  "clusters": [
+    {
+      "name": "local",
+      "servers": [
+        {
+          "name": "master-server",
+          "address": "http://192.168.99.100:19999"
+        },
+        {
+          "name": "host-1",
+          "address": "http://192.168.99.101:19999"
+        },
+        {
+          "name": "host-2",
+          "address": "http://192.168.99.102:19999"
+        }
+      ]
+    }
+  ]
+}
