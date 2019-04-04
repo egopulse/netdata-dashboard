@@ -5,39 +5,39 @@
       "servers": [
         {
           "name": "gc-db",
-          "address": "http://172.104.185.159:19999/host/gc-db/"
+          "address": "http://139.162.54.172:9999/host/gc-db/"
         },
         {
           "name": "gc-db-1",
-          "address": "http://172.104.185.159:19999/host/gc-db-1/"
+          "address": "http://139.162.54.172:9999/host/gc-db-1/"
         },
         {
           "name": "gc-db-2",
-          "address": "http://172.104.185.159:19999/host/gc-db-2/"
+          "address": "http://139.162.54.172:9999/host/gc-db-2/"
         },
         {
           "name": "gc-db-3",
-          "address": "http://172.104.185.159:19999/host/gc-db-3/"
+          "address": "http://139.162.54.172:9999/host/gc-db-3/"
         },
         {
           "name": "gc-es",
-          "address": "http://172.104.185.159:19999/host/gc-es/"
+          "address": "http://139.162.54.172:9999/host/gc-es/"
         },
         {
           "name": "gc-loadbalancer",
-          "address": "http://172.104.185.159:19999/host/gc-loadbalancer/"
+          "address": "http://139.162.54.172:9999/host/gc-loadbalancer/"
         },
         {
           "name": "gc-other",
-          "address": "http://172.104.185.159:19999/host/gc-other/"
+          "address": "http://139.162.54.172:9999/host/gc-other/"
         },
         {
           "name": "gc-swarm-manager",
-          "address": "http://172.104.185.159:19999/host/gc-swarm-manager/"
+          "address": "http://139.162.54.172:9999/host/gc-swarm-manager/"
         },
         {
           "name": "gc-ts",
-          "address": "http://172.104.185.159:19999/host/gc-ts/"
+          "address": "http://139.162.54.172:9999/host/gc-ts/"
         }
       ]
     }
