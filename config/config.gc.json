@@ -29,7 +29,7 @@
         },
         {
           "name": "gc-other",
-          "address": "http://139.162.54.172:9999/host/gc-other/"
+          "address": "http://139.162.54.172:9999/host/other/"
         },
         {
           "name": "gc-swarm-manager",
