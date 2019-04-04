@@ -5,15 +5,15 @@
       "servers": [
         {
           "name": "master-server",
-          "address": "http://192.168.99.100:19999"
+          "address": "http://192.168.99.100/"
         },
         {
           "name": "host-1",
-          "address": "http://192.168.99.101:19999"
+          "address": "http://192.168.99.100/host/host-1/"
         },
         {
           "name": "host-2",
-          "address": "http://192.168.99.102:19999"
+          "address": "http://192.168.99.100/host/host-2/"
         }
       ]
     }
