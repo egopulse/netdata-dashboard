@@ -3,7 +3,6 @@ import './App.css';
 import NavBar from './components/NavBar'
 import DashboardMain from './components/DashboardMain'
 import config from 'Config'
-console.log(config)
 
 const SERVER_KEY = "servers"
 const RESET_KEY = "reset"
@@ -42,13 +41,19 @@ class App extends Component {
     };
     this.onSeverListUpdated = this.onSeverListUpdated.bind(this);
     this.onReset = this.onReset.bind(this);
+    this.onClusterSelected = this.onClusterSelected.bind(this);
   }
 
   onSeverListUpdated = (serverData) => {
     saveServers(serverData)
     this.setState({ servers: serverData });
     window.location.reload();
-    // window.NETDATA.start();
+  }
+
+  onClusterSelected = (cluster) => {
+    saveServers(cluster.servers)
+    this.setState({ servers: cluster.servers });
+    window.location.reload();
   }
 
   onReset = () => {
@@ -59,10 +64,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar servers={this.state.servers}
+        <NavBar 
+          clusters={config.clusters}
+          servers={this.state.servers}
           onReset={this.onReset}
+          onClusterSelected={this.onClusterSelected}
           onSeverListUpdated={this.onSeverListUpdated}></NavBar>
-        <DashboardMain servers={this.state.servers}></DashboardMain>
+        <DashboardMain 
+          baseUrl={config.server_url}
+          servers={this.state.servers}></DashboardMain>
       </div>
     );
   }

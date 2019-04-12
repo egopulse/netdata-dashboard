@@ -46,6 +46,7 @@ class NodeSatus extends Component {
   render() {
 
     const nodeURL = this.props.nodeUrl;
+    const nodeName = this.props.nodeName;
 
     return (
       <div className="NodeStatus">
@@ -92,6 +93,7 @@ class NodeSatus extends Component {
         </div>
         <ServerDetail 
           nodeURL={nodeURL}
+          nodeName={nodeName}
           open={this.state.open}
           onClose={this.handleClose}></ServerDetail>
       </div>

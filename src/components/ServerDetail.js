@@ -24,7 +24,6 @@ const styles = {
   },
 };
 
-
 class ServerDetail extends Component {
 
   constructor(props) {
@@ -33,10 +32,6 @@ class ServerDetail extends Component {
       open: false
     };
   }
-
-  handleClose = () => {
-    this.props.onClose();
-  };
 
   render() {
     return (
@@ -48,9 +43,10 @@ class ServerDetail extends Component {
         >
           <AppBar className={""}>
             <Toolbar>
-              <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
+              <IconButton color="inherit" onClick={() => this.props.onClose()} aria-label="Close">
                 <CloseIcon />
               </IconButton>
+              <strong>{this.props.nodeName}</strong>
             </Toolbar>
           </AppBar>
           <Card className={"classes.card"} style={styles.card}>

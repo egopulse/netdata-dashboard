@@ -3,6 +3,15 @@ var webpack = require('webpack');
 
 module.exports = (config, env) => {
 
+  console.log(`=============================================`)
+  console.log(`${process.env.ENV}`)
+  console.log(`${process.env.REACT_APP_NETDATA_SERVER}`)
+  console.log(`${process.env.CONFIG_PATH}`)
+
+  const configPath = process.env.CONFIG_PATH || `./config/config.${process.env.ENV}.json`;
+  console.log(`${configPath}`)
+  console.log(`=============================================`)
+
   return {
     ...config,
     // output: {
@@ -11,7 +20,7 @@ module.exports = (config, env) => {
     //   publicPath: "/dashboard"
     // },
     externals: {
-      'Config': JSON.stringify(require(`./config/config.${process.env.ENV}.json`))
+      'Config': JSON.stringify(require(configPath))
     }
   };
 }

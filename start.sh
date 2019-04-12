@@ -1,7 +1,9 @@
-echo "================= $1 ================="
-echo "================= $2 ================="
-ENV=$1 REACT_APP_NETDATA_SERVER=$2 npm run build
-echo "================= BUILD DONE ================="
-echo "================= STARTING ================="
+echo $@
+
+ENV=$1 REACT_APP_NETDATA_SERVER=$2 CONFIG_PATH=$3 npm run build
+
+echo "Build done"
+echo "Server starting ....."
+
 # serve -s build
 node server.js

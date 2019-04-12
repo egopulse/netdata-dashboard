@@ -1,28 +1,31 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import NodeStatus from './NodeStatus'
 
-class CoursesList extends Component {
+class DashboardMain extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      ...props,
-    }
+    console.log(props)
+    // this.state = {
+    //   ...props,
+    // }
   }
 
   render() {
+    const nodeUrl = `${this.props.baseUrl}host/`
     return (
       <div>
         <Grid container spacing={24}>
           {
-            this.props.servers.map(server => {
+            this.props.servers.map((server, i) => {
               console.log(server)
               return (
-                <Grid key={server.address} item xs={12} >
+                <Grid key={i} item xs={12} >
                   <NodeStatus
-                    nodeUrl={server.address}
-                    nodeName={server.name ? server.name : server.address}></NodeStatus>
+                    nodeUrl={`${nodeUrl}${server}/`}
+                    nodeName={server}></NodeStatus>
                 </Grid>
               )
             })
@@ -43,4 +46,10 @@ class CoursesList extends Component {
     )
   }
 }
-export default CoursesList;
+
+DashboardMain.propTypes = {
+  baseUrl: PropTypes.string,
+  servers: PropTypes.array
+}
+
+export default DashboardMain;

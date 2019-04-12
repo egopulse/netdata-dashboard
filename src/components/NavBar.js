@@ -7,6 +7,20 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Divider from '@material-ui/core/Divider';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Filter1 from '@material-ui/icons/Filter1';
+import Filter2 from '@material-ui/icons/Filter2';
+import Filter3 from '@material-ui/icons/Filter3';
+import Filter4 from '@material-ui/icons/Filter4';
+import Filter5 from '@material-ui/icons/Filter5';
+
 
 const styles = theme => ({
   root: {
@@ -74,18 +88,41 @@ class NavBar extends Component {
     this.state = {
       ...props,
       nodeAddress: "",
+      open: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.keyPress = this.keyPress.bind(this);
     this.onServerUpdated = this.onServerUpdated.bind(this);
   }
 
+  handleDrawerOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleDrawerClose = () => {
+    this.setState({ open: false });
+  };
+
   onServerUpdated = (serverData) => {
     this.props.onSeverListUpdated(serverData);
   }
 
+  getIcon = (index) => {
+    const value = index + 1;
+    if (value % 2 === 0) {
+      return <Filter2 />
+    } else if (value % 3 === 0) {
+      return <Filter3 />
+    } else if (value % 4 === 0) {
+      return <Filter4 />
+    } else if (value % 5 === 0) {
+      return <Filter5 />
+    }
+    return <Filter1 />
+  }
+
   handleDelete = node => () => {
-    if (!!node.address) {
+    if (!!node) {
       this.setState(state => {
         const serverData = [...state.servers];
         const nodeToDelete = serverData.indexOf(node);
@@ -93,7 +130,6 @@ class NavBar extends Component {
         this.onServerUpdated(serverData);
         return { servers: serverData };
       });
-
     }
   };
 
@@ -107,8 +143,8 @@ class NavBar extends Component {
       if (!!nodeAddress) {
         this.setState(state => {
           const serverData = [...state.servers];
-          const nodeToAdd = { address: nodeAddress };
-          serverData.push(nodeToAdd);
+          // const nodeToAdd = { address: nodeAddress };
+          serverData.push(nodeAddress);
           this.onServerUpdated(serverData);
           return {
             nodeAddress: "",
@@ -121,15 +157,26 @@ class NavBar extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, clusters } = this.props;
+    const { open } = this.state;
 
     return (
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
             <div>
-              <Typography className={classes.title} variant="h4" color="inherit" noWrap>
-                <a href={'#'} onClick={()=>this.props.onReset()}>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerOpen}
+              // className={classNames(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </div>
+            <div>
+              <Typography className={classes.title} variant="h5" color="inherit" noWrap>
+                <a href='#' onClick={() => this.props.onReset()}>
                   Monitoring Dashboard
               </a>
               </Typography>
@@ -147,11 +194,11 @@ class NavBar extends Component {
               />
             </div>
             <div>
-              {this.state.servers.map(s => {
+              {this.state.servers.map((s, i) => {
                 return (
                   <Chip
-                    key={s.address}
-                    label={s.address}
+                    key={i}
+                    label={s}
                     onDelete={this.handleDelete(s)}
                     className={classes.chip}
                   />
@@ -160,6 +207,28 @@ class NavBar extends Component {
             </div>
           </Toolbar>
         </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}>
+          <div>
+            <IconButton onClick={this.handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {
+              clusters.map((item, index) => (
+                <ListItem button key={item.name} onClick={() => this.props.onClusterSelected(item)}>
+                  <ListItemIcon>{this.getIcon(index)}</ListItemIcon>
+                  {item.name}
+                </ListItem>
+              ))
+            }
+          </List>
+        </Drawer>
       </div>
     );
   }

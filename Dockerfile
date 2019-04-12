@@ -8,12 +8,13 @@ COPY . /opt/netdata-dashboard
 ARG ENV_BUILD=local
 ENV ENV $ENV_BUILD
 ENV REACT_APP_NETDATA_SERVER $REACT_APP_NETDATA_SERVER
+ENV CONFIG_PATH $CONFIG_PATH
 
-RUN npm install -g serve
+# RUN npm install -g serve
 RUN npm install 
 RUN chmod +x /opt/netdata-dashboard/start.sh
 # RUN ENV=$ENV_BUILD npm run build
 EXPOSE 5000
-ENTRYPOINT ["/bin/bash", "-c", "/opt/netdata-dashboard/start.sh $ENV $REACT_APP_NETDATA_SERVER"]
+ENTRYPOINT ["/bin/bash", "-c", "/opt/netdata-dashboard/start.sh $ENV $REACT_APP_NETDATA_SERVER $CONFIG_PATH"]
 
 

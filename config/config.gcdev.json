@@ -1,0 +1,33 @@
+{
+  "server_url": "https://netdata.internal.egopulse.com/",
+  "clusters": [
+    {
+      "name": "geniocare-stack",
+      "servers": [
+        "geniocare-gc-db",
+        "geniocare-gc-db-1",
+        "geniocare-gc-db-2",
+        "geniocare-gc-db-3",
+        "geniocare-gc-es",
+        "geniocare-gc-loadbalancer",
+        "geniocare-other",
+        "geniocare-gc-swarm-manager",
+        "geniocare-gc-ts"
+      ]
+    },
+    {
+      "name": "medi-stack",
+      "servers": [
+        "medi-db",
+        "medi-db-1",
+        "medi-db-2",
+        "medi-db-3",
+        "medi-es",
+        "medi-loadbalancer",
+        "medi-other",
+        "medi-swarm-manager",
+        "medi-ts"
+      ]
+    }
+  ]
+}
